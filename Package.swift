@@ -8,9 +8,9 @@
 import PackageDescription
 
 let package = Package(
-    name: "Gravity",
+    name: "GravityC",
     products: [
-        .library(name: "GravityC", targets: ["GravityC"]),
+        .library(name: "GravityC", type: .dynamic, targets: ["GravityC"]),
     ],
     targets: [
         .target(name: "GravityC", cSettings: [
