@@ -18,10 +18,12 @@ let package = Package(
             // WASI doesn't have umask
             .define("umask(x)", to: "022", .when(platforms: [.wasi]))
         ], linkerSettings: [
-            // For path functions
-            .linkedLibrary("shlwapi", .when(platforms: [.windows])),
             // For math functions
             .linkedLibrary("m", .when(platforms: [.macOS, .macCatalyst, .iOS, .tvOS, .watchOS, .linux, .android, .wasi])),
+            // For path functions
+            .linkedLibrary("shlwapi", .when(platforms: [.windows])),
+            // SR-14728
+            .linkedLibrary("swiftCore", .when(platforms: [.windows])),
         ]),
     ],
     swiftLanguageVersions: [.v5],
